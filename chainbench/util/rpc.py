@@ -1,4 +1,4 @@
-import random
+import secrets
 
 
 def generate_request(method, params: list | dict | None = None, version: str = "2.0") -> dict:
@@ -10,5 +10,6 @@ def generate_request(method, params: list | dict | None = None, version: str = "
         "jsonrpc": version,
         "method": method,
         "params": params,
-        "id": random.randint(1, 100000000),
+        "id": secrets.randbelow(100000000) + 1,
     }
+
