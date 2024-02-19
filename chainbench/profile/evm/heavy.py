@@ -2,6 +2,7 @@
 EVM profile (heavy mode).
 """
 from random import randint
+import os
 
 from locust import constant_pacing, tag, task
 
@@ -101,9 +102,10 @@ class EvmHeavyProfile(EvmUser):
                 {"tracer": "callTracer"},
             ],
         )
-
+    
     @task
     def debug_storage_range_at_task(self):
+        random_number = int.from_bytes(os.urandom(2), 'big') % 9000 + 1000
         self.make_rpc_call(
             name="debug_storage_range_at",
             method="debug_storageRangeAt",
@@ -112,7 +114,7 @@ class EvmHeavyProfile(EvmUser):
                 0,
                 "0x27C70Cd1946795B66be9d954418546998b546634",
                 "0x0000000000000000000000000000000000000000000000000000000000000000",
-                randint(1000, 10000),
+                random_number,
             ],
         )
 
