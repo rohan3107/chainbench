@@ -188,8 +188,9 @@ def on_init(environment: Environment, **_kwargs):
                 environment.runner.send_message("test_data", {"data": (test_data, i)}, worker)
                 logger.info(f"Test data is sent to worker {i}")
             if environment.web_ui:
-                print(f"Web UI started at: " f"http://{environment.runner.master_bind_host}:8089")
-                logger.info(f"Web UI started at: " f"http://{environment.runner.master_bind_host}:8089")
+                print(f"Web UI started at: " f"https://{environment.runner.master_bind_host}:8089")
+                logger.info(f"Web UI started at: " f"https://{environment.runner.master_bind_host}:8089")
+
             if getattr(environment.parsed_options, "use_latest_blocks", False):
                 gevent.spawn(get_block_worker, environment.runner)
 
